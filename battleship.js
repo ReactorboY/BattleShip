@@ -30,18 +30,3 @@ while (isSunk == false) {
 
 var stats = "You took " + guesses + " guesses to sink the battleship," + " which means you're shooting accuracy was " + ((3/guesses) * 100) + "%";
 alert(stats);
-
-var view = {
-  displayMessage: function (msg) {
-    var messageArea = document.getElementById("messageArea");
-    messageArea.innerHtml = msg;
-  },
-  displayHit: function () {
-    var cell = document.getElementById(location);
-    cell.setAttribute("class", "hit");
-  },
-  displayMiss: function () {
-    var cell = document.getElementById(location);
-    cell.setAttribute("class", "hit");
-  }
-};
