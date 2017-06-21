@@ -1,3 +1,6 @@
+ // MVC is the most important thing to learn while
+ // designing single page applications as well as games
+
 var view = {
   displayMessage: function (msg) {
     var messageArea = document.getElementById("messageArea");
