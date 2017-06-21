@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var random = Math.floor(Math.random() * 5);
 var location1 = random;
 var location2 = location1 + 1;
@@ -30,6 +31,10 @@ while (isSunk == false) {
 
 var stats = "You took " + guesses + " guesses to sink the battleship," + " which means you're shooting accuracy was " + ((3/guesses) * 100) + "%";
 alert(stats);
+=======
+ // MVC is the most important thing to learn while
+ // designing single page applications as well as games
+>>>>>>> chnaged
 
 var view = {
   displayMessage: function (msg) {
@@ -42,6 +47,6 @@ var view = {
   },
   displayMiss: function () {
     var cell = document.getElementById(location);
-    cell.setAttribute("class", "hit");
+    cell.setAttribute("class", "miss");
   }
 };
