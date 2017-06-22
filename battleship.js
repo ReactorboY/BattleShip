@@ -1,62 +1,32 @@
- // MVC is the most important thing to learn while
- // designing single page applications as well as games
+var random = Math.floor(Math.random() * 5);
+var location1 = random;
+var location2 = location1 + 1;
+var location3 = location2 +1;
 
-//  model object
-//  this initiize everytnig for game
-var model = {
-  boardSize: 7,
-  numShips: 3,
-  shipLength: 3,
-  shipsSunk: 0,
+var guess;
+var guesses = 0;
+var hits = 0;
 
-  ships: [
-    { locations: ["06","16","26"], hits: ["","",""] },
-    { locations: ["24","34","44"], hits: ["","",""] },
-    { locations: ["10","11","12"], hits: ["","",""] }
-  ],
+var isSunk = false;
 
-  fire: function (guess) {
-    for(var i = 0;i < this.numShips; i++){
-      var ship = this.ships[i];
-      var index = ship.locations.indexOf(guess);
-      if(index >= 0){
-        ships.hits[index] = "hit";
-        view.displayHit(guess);
-        view.displayMessage("HIT")
-        if(this.isSunk(ship)){
-          view.displayMessage("You sank my ship!");
-          this.shipsSunk++;
-        }
-        return true;
+while (isSunk == false) {
+  guess = prompt("Ready, aim, fire! (enter a number 0-6):");
+  if(guess < 0 || guess > 6){
+    alert("Enter a valid Number between 0-6");
+  } else {
+    guesses = guesses + 1;
+    if(guess == location1 || guess == location2 || guess == location3){
+      alert("Hit");
+      hits = hits + 1;
+      if(hits == 3){
+        isSunk = true;
+        alert("You sank my battleship");
       }
+    } else {
+      alert("miss");
     }
-    view.displayMiss(guess);
-    view.displayMessage("You missed")
-    return false;
-  },
-  isSunk: function (ship) {
-    for(var i = 0; i < this.shipLength; i++){
-      if(ship.hits[i] !== "hit"){
-        return false;
-      }
-    }
-    return true;
   }
-};
+}
 
-var view = {
-  displayMessage: function (msg) {
-    var messageArea = document.getElementById("messageArea");
-    messageArea.innerHtml = msg;
-  },
-  displayHit: function () {
-    var cell = document.getElementById(location);
-    cell.setAttribute("class", "hit");
-  },
-  displayMiss: function () {
-    var cell = document.getElementById(location);
-    cell.setAttribute("class", "miss");
-  }
-};
-
-model.fire("53");
+var stats = "You took " + guesses + " guesses to sink the battleship," + " which means you're shooting accuracy was " + ((3/guesses) * 100) + "%";
+alert(stats);
