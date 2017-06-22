@@ -18,10 +18,10 @@ var view = {
   }
 };
 
-view.displayMessage("Tap Tap, can I be go here ?");
-view.displayMiss("00")
-view.displayHit("34")
-view.displayHit("26")
+// view.displayMessage("Tap Tap, can I be go here ?");
+// view.displayMiss("00")
+// view.displayHit("34")
+// view.displayHit("26")
 
 //  Now Work on Model is starting
 //  Model is where we keep the state of the game,
@@ -55,5 +55,46 @@ var model = {
       locations: ["10","11","12"],
       hits: ["","",""]
     }
-  ] 
+  ],
+
+  //  fire method used to determine whther ship is hit or miss
+  //  by  calculating from guess of input provided
+  fire: function (guess) {
+    for(var i = 0; i < this.numShips; i++){
+      //  to see whether guess matches any ship location
+      var ship = this.ships[i];
+
+      //  location sof the ship
+      //  to find whether guess present in location or not
+      var index = ship.locations.indexOf(guess);
+      if(index >= 0){
+        ship.hits[index] = "hit";
+        view.displayHit(guess);
+        view.displayMessage("HIT!");
+        if(this.isSunk(ship)){
+          view.displayMessage("You sank my battleship!");
+          this.shipsSunk++;
+        }
+        return true;
+      }
+    }
+    view.displayMiss(guess);
+    view.displayMessage("You Missed!");
+    return false;
+  },
+
+  isSunk: function (ship) {
+    for(var i = 0; i < this.shipLength; i++){
+      if(ship.hits[i] !== "hit"){
+        return false;
+      }
+    }
+    return true;
+  }
 };
+
+
+model.fire("53");
+model.fire("06");
+model.fire("16");
+model.fire("26");
