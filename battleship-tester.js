@@ -141,15 +141,30 @@ function parseGuess(guess) {
 // console.log(parseGuess("B6"));
 // console.log(parseGuess("G3"));
 
-controller.processGuess("A0");
-controller.processGuess("A6");
-controller.processGuess("B6");
-controller.processGuess("C6");
-controller.processGuess("C4");
-controller.processGuess("D4");
-controller.processGuess("E4");
-controller.processGuess("B0");
-controller.processGuess("B1");
-controller.processGuess("B2");
+// controller.processGuess("A0");
+// controller.processGuess("A6");
+// controller.processGuess("B6");
+// controller.processGuess("C6");
+// controller.processGuess("C4");
+// controller.processGuess("D4");
+// controller.processGuess("E4");
+// controller.processGuess("B0");
+// controller.processGuess("B1");
+// controller.processGuess("B2");
 
-//  358
+//  function to handle whne user click fire button
+function init() {
+  var fireButton = document.getElementById("fireButton");
+  //  when fire click initaite handleFireButton function
+  fireButton.onclick = handleFireButton;
+}
+
+function handleFireButton() {
+  var guessInput = document.getElementById("guessInput");
+  var guess = guessInput.value;
+  controller.processGuess(guess);
+
+  guessInput.value = "";
+}
+
+window.onload = init;
